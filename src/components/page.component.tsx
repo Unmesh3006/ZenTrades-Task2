@@ -9,6 +9,7 @@ import {
   file_type,
 } from "../util/constants";
 import { useNavigate } from "react-router-dom";
+import FieldsComponent from "./fields.component";   
 
 const Page: any = () => {
   const [file, setFile] = useState<any>("No file chosen");
@@ -212,7 +213,7 @@ const Page: any = () => {
                   Select the fields to be displayed
                 </div>
                 <div className="w-full h-full flex">
-                  <div className="w-1/3 h-full">
+                  {/* <div className="w-1/3 h-full">
                     <div className="w-full h-16 flex items-center justify-center">
                       Available Fields
                     </div>
@@ -243,7 +244,8 @@ const Page: any = () => {
                     <div className="w-full h-3/4 bg-red-500 flex items-center justify-center">
                       Product Name
                     </div>
-                  </div>
+                  </div> */}
+                  <FieldsComponent/>
                 </div>
               </div>
             </div>
