@@ -75,7 +75,7 @@ const Page: any = () => {
 
   return (
     <>
-      <div className="bg-slate-300 h-screen w-screen flex">
+      <div className="bg-slate-200 h-screen w-screen flex">
         <div className="m-8 w-full">
           <div>Import Products</div>
           <div className="h-2"></div>
@@ -193,7 +193,7 @@ const Page: any = () => {
                 </div>
               </div>
             </div>
-             <div className="w-full h-1/2 bg-white my-4 flex">
+             <div className="w-full h-1/2 bg-white mt-4 flex">
               <div className="w-28 h-full m-3 flex">
                 <div className="">
                   <input type="checkbox" />
@@ -244,7 +244,18 @@ const Page: any = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-16 bg-green-500"></div>
+            <div className="w-full h-16 flex justify-end bg-slate-200">
+              <div className="w-20 h-full flex justify-center items-center">
+                <button className="w-32 h-10 bg-green-500 rounded-lg text-white">
+                  Next
+                </button>
+              </div>
+              <div className="w-20 h-full flex justify-center items-center mx-10">
+                <button className="w-32 h-10 rounded-lg text-red-500">
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
