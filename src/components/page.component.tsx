@@ -8,6 +8,7 @@ import {
   delimiter,
   file_type,
 } from "../util/constants";
+import { useNavigate } from "react-router-dom";
 
 const Page: any = () => {
   const [file, setFile] = useState<any>("No file chosen");
@@ -16,6 +17,8 @@ const Page: any = () => {
 
   const [selectedFields, setSelectedFields] = useState<any>([]);
   const [available_fields, setAvailableFields] = useState<any>([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setAvailableFields(available_fields_data);
@@ -246,7 +249,17 @@ const Page: any = () => {
             </div>
             <div className="w-full h-16 flex justify-end bg-slate-200">
               <div className="w-20 h-full flex justify-center items-center">
-                <button className="w-32 h-10 bg-green-500 rounded-lg text-white">
+                 <button
+                  className="w-32 h-10 bg-green-500 rounded-lg text-white"
+                  onClick={() => {
+                    if (file === "No file chosen") {
+                      toast.error("Please select a file");
+                      return;
+                    }
+
+                    navigate("/table", { state: { data: data } });
+                  }}
+                >
                   Next
                 </button>
               </div>
