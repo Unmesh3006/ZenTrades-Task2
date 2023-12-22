@@ -1,11 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
 import Dropzone from "react-dropzone";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { character_ecoding, delimiter, file_type } from "../util/constants";
 
 const Page: any = () => {
-  const [file, setFile] = React.useState<any>("No file chosen");
-  const [data, setData] = React.useState<any>([]);
+  const [file, setFile] = useState<any>("No file chosen");
+  const [data, setData] = useState<any>([]);
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const handleSelectChange = (event: any) => {
+    if (event.target.value === "") {
+      setSelectedItem("");
+      return;
+    }
+
+    setSelectedItem(event.target.value);
+  };
 
   async function onDropFunc(acceptedFiles: any) {
     console.log(acceptedFiles[0].name);
@@ -86,7 +97,81 @@ const Page: any = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-1/2 h-full bg-yellow-500 ml-5"></div>
+               <div className="w-1/2 h-full bg-white ml-5 flex">
+                <div className="w-16 h-full  flex justify-start pt-3 pl-2">
+                  Step 2 :
+                </div>
+                <div className="w-3/4 h-full">
+                  <div className="h-1/5 w-full flex items-center justify-start pb-2 pl-4">
+                    Specify Format
+                  </div>
+                  <div className="h-1/5 w-full  flex">
+                    <div className="h-full w-1/3  flex items-center pl-4">
+                      File Type
+                    </div>
+                    <div className="h-full w-2/3 flex items-center justify-center">
+                      <select
+                        value={selectedItem}
+                        onChange={handleSelectChange}
+                        className="w-full p-2 mx-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+                      >
+                        <option value="">Select an option</option>{" "}
+                        {file_type.map((item: any) => (
+                          <option key={item.name} value={item.name}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="h-1/5 w-full  flex">
+                    <div className="h-full w-1/3  flex items-center pl-4">
+                      Character Encoding
+                    </div>
+                    <div className="h-full w-2/3 flex items-center justify-center">
+                      <select
+                        value={selectedItem}
+                        onChange={handleSelectChange}
+                        className="w-full p-2 mx-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+                      >
+                        <option value="">Select an option</option>{" "}
+                        {character_ecoding.map((item: any) => (
+                          <option key={item.name} value={item.name}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="h-1/5 w-full  flex">
+                    <div className="h-full w-1/3  flex items-center pl-4">
+                      Delimiter
+                    </div>
+                    <div className="h-full w-2/3 flex items-center justify-center">
+                      <select
+                        value={selectedItem}
+                        onChange={handleSelectChange}
+                        className="w-full p-2 mx-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+                      >
+                        <option value="">Select an option</option>{" "}
+                        {delimiter.map((item: any) => (
+                          <option key={item.name} value={item.name}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="h-1/5 w-full  flex">
+                    <div className="h-full w-1/3  flex items-center pl-4">
+                      Has header
+                    </div>
+                    <div className="h-full w-2/3 flex items-center justify-start pl-2">
+                      <input type="checkbox" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="w-full h-1/2 bg-blue-500"></div>
             <div className="w-full h-1/6 bg-green-500"></div>
