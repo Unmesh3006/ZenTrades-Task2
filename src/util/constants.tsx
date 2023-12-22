@@ -54,3 +54,15 @@ export const delimiter = [
     value: " ",
   },
 ];
+
+export const available_fields_data = [
+  "Product Id",
+  "SubCategory",
+  "Title",
+  "Price",
+  "Popularity",
+  "Description",
+  "Rating",
+  "UTM Source",
+  "UTM Medium",
+];

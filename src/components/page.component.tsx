@@ -1,13 +1,25 @@
-import React,{useState} from "react";
+import React,{ useEffect, useState} from "react";
 import Dropzone from "react-dropzone";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { character_ecoding, delimiter, file_type } from "../util/constants";
+import {
+  available_fields_data,
+  character_ecoding,
+  delimiter,
+  file_type,
+} from "../util/constants";
 
 const Page: any = () => {
   const [file, setFile] = useState<any>("No file chosen");
   const [data, setData] = useState<any>([]);
   const [selectedItem, setSelectedItem] = useState("");
+
+  const [selectedFields, setSelectedFields] = useState<any>([]);
+  const [available_fields, setAvailableFields] = useState<any>([]);
+
+  useEffect(() => {
+    setAvailableFields(available_fields_data);
+  }, []);
 
   const handleSelectChange = (event: any) => {
     if (event.target.value === "") {
@@ -16,6 +28,14 @@ const Page: any = () => {
     }
 
     setSelectedItem(event.target.value);
+  };
+
+  const handleAdd = (event: any) => {
+    console.log("add");
+  };
+
+  const handleRemove = () => {
+    console.log("remove");
   };
 
   async function onDropFunc(acceptedFiles: any) {
@@ -173,8 +193,58 @@ const Page: any = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-1/2 bg-blue-500"></div>
-            <div className="w-full h-1/6 bg-green-500"></div>
+             <div className="w-full h-1/2 bg-white my-4 flex">
+              <div className="w-28 h-full m-3 flex">
+                <div className="">
+                  <input type="checkbox" />
+                </div>
+                <div className="w-1"></div>
+                Step 3 :
+              </div>
+              <div className="h-full w-1/2 bg-white flex flex-col">
+                <div className="w-full h-16 flex items-center">
+                  Display Handling
+                </div>
+                <div className="w-full h-16 flex items-center">
+                  Select the fields to be displayed
+                </div>
+                <div className="w-full h-full flex">
+                  <div className="w-1/3 h-full">
+                    <div className="w-full h-16 flex items-center justify-center">
+                      Available Fields
+                    </div>
+                    <div className="w-full h-3/4 bg-red-500 flex items-center justify-center">
+                      Product Name
+                    </div>
+                  </div>
+                  <div className="w-12 h-full flex flex-col items-center justify-center p-2">
+                    <div className="w-full h-20"></div>
+                    <button
+                      className="w-full h-10 border-2"
+                      onClick={handleAdd}
+                    >
+                      {">>"}
+                    </button>
+                    <div className="w-full h-20"></div>
+                    <button
+                      className="w-full h-10 border-2"
+                      onClick={handleRemove}
+                    >
+                      {"<<"}
+                    </button>
+                  </div>
+                  <div className="w-1/3 h-full ">
+                    <div className="w-full h-16 flex items-center justify-center">
+                      Fields to be Displayed
+                    </div>
+                    <div className="w-full h-3/4 bg-red-500 flex items-center justify-center">
+                      Product Name
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full h-16 bg-green-500"></div>
           </div>
         </div>
       </div>
