@@ -1,13 +1,22 @@
 import React from "react";
 import Dropzone from "react-dropzone";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Page: any = () => {
-  const [file, setFile] = React.useState<any>(null);
+  const [file, setFile] = React.useState<any>("No file chosen");
 
   async function onDropFunc(acceptedFiles: any) {
     console.log(acceptedFiles[0].name);
+     if (
+      acceptedFiles[0].name.split(".")[1] !== "csv" &&
+      acceptedFiles[0].name.split(".")[1] !== "json"
+    ) {
+      toast.error("Invalid File Type");
+      return;
+    }
     setFile(acceptedFiles[0].name);
-    console.log(file);
+ 
   }
 
   return (
