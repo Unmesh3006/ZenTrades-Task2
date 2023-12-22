@@ -62,7 +62,4 @@ export const available_fields_data = [
   "Price",
   "Popularity",
   "Description",
-  "Rating",
-  "UTM Source",
-  "UTM Medium",
 ];

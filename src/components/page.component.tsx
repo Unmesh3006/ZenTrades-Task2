@@ -14,7 +14,10 @@ import FieldsComponent from "./fields.component";
 const Page: any = () => {
   const [file, setFile] = useState<any>("No file chosen");
   const [data, setData] = useState<any>([]);
-  const [selectedItem, setSelectedItem] = useState("");
+   const [selectedFileType, setSelectedFileType] = useState<any>("");
+  const [selectedCharacterEncoding, setSelectedCharacterEncoding] =
+    useState<any>("");
+  const [selectedDelimiter, setSelectedDelimiter] = useState<any>("");
 
   const [selectedFields, setSelectedFields] = useState<any>([]);
   const [available_fields, setAvailableFields] = useState<any>([]);
@@ -25,21 +28,31 @@ const Page: any = () => {
     setAvailableFields(available_fields_data);
   }, []);
 
-  const handleSelectChange = (event: any) => {
+  const handleSelectFileTypeChange = (event: any) => {
     if (event.target.value === "") {
-      setSelectedItem("");
+      setSelectedFileType("");
       return;
     }
 
-    setSelectedItem(event.target.value);
+    setSelectedFileType(event.target.value);
   };
 
-  const handleAdd = (event: any) => {
-    console.log("add");
+ const handleSelectCharacterEncodingChange = (event: any) => {
+    if (event.target.value === "") {
+      setSelectedCharacterEncoding("");
+      return;
+    }
+
+    setSelectedCharacterEncoding(event.target.value);
   };
 
-  const handleRemove = () => {
-    console.log("remove");
+  const handleSelectDelimiterChange = (event: any) => {
+    if (event.target.value === "") {
+      setSelectedDelimiter("");
+      return;
+    }
+
+    setSelectedDelimiter(event.target.value);
   };
 
   async function onDropFunc(acceptedFiles: any) {
@@ -135,8 +148,8 @@ const Page: any = () => {
                     </div>
                     <div className="h-full w-2/3 flex items-center justify-center">
                       <select
-                        value={selectedItem}
-                        onChange={handleSelectChange}
+                         value={selectedFileType}
+                        onChange={handleSelectFileTypeChange}
                         className="w-full p-2 mx-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
                       >
                         <option value="">Select an option</option>{" "}
@@ -154,8 +167,8 @@ const Page: any = () => {
                     </div>
                     <div className="h-full w-2/3 flex items-center justify-center">
                       <select
-                        value={selectedItem}
-                        onChange={handleSelectChange}
+                        value={selectedCharacterEncoding}
+                        onChange={handleSelectCharacterEncodingChange}
                         className="w-full p-2 mx-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
                       >
                         <option value="">Select an option</option>{" "}
@@ -173,8 +186,8 @@ const Page: any = () => {
                     </div>
                     <div className="h-full w-2/3 flex items-center justify-center">
                       <select
-                        value={selectedItem}
-                        onChange={handleSelectChange}
+                        value={selectedDelimiter}
+                        onChange={handleSelectDelimiterChange}
                         className="w-full p-2 mx-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
                       >
                         <option value="">Select an option</option>{" "}
@@ -213,38 +226,6 @@ const Page: any = () => {
                   Select the fields to be displayed
                 </div>
                 <div className="w-full h-full flex">
-                  {/* <div className="w-1/3 h-full">
-                    <div className="w-full h-16 flex items-center justify-center">
-                      Available Fields
-                    </div>
-                    <div className="w-full h-3/4 bg-red-500 flex items-center justify-center">
-                      Product Name
-                    </div>
-                  </div>
-                  <div className="w-12 h-full flex flex-col items-center justify-center p-2">
-                    <div className="w-full h-20"></div>
-                    <button
-                      className="w-full h-10 border-2"
-                      onClick={handleAdd}
-                    >
-                      {">>"}
-                    </button>
-                    <div className="w-full h-20"></div>
-                    <button
-                      className="w-full h-10 border-2"
-                      onClick={handleRemove}
-                    >
-                      {"<<"}
-                    </button>
-                  </div>
-                  <div className="w-1/3 h-full ">
-                    <div className="w-full h-16 flex items-center justify-center">
-                      Fields to be Displayed
-                    </div>
-                    <div className="w-full h-3/4 bg-red-500 flex items-center justify-center">
-                      Product Name
-                    </div>
-                  </div> */}
                   <FieldsComponent/>
                 </div>
               </div>
