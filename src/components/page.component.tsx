@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Page: any = () => {
   const [file, setFile] = React.useState<any>("No file chosen");
+  const [data, setData] = React.useState<any>([]);
 
   async function onDropFunc(acceptedFiles: any) {
     console.log(acceptedFiles[0].name);
@@ -15,6 +16,28 @@ const Page: any = () => {
       toast.error("Invalid File Type");
       return;
     }
+
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => {
+      try {
+        // Parse the JSON data
+        const jsonData = JSON.parse(event.target.result);
+        console.log("JSON Data:", jsonData);
+        setData(jsonData["products"]);
+
+        // Now you have access to the data from the JSON file
+        // You can set it in the component state or perform any other actions
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    };
+
+    // Read the file as text
+    reader.readAsText(file);
+
+
     setFile(acceptedFiles[0].name);
  
   }
